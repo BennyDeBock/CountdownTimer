@@ -1,5 +1,9 @@
 # countdown-timer
 
+## Possible improvements
+- API endpoint to get the data from
+- Small overview for quick navigation
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
