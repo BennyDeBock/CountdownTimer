@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "name": "Heimdal Verkiezingen",
+      "date": "2025-05-12T18:30:00",
+      "background": "/verkiezingen.jpg"
+    },
+    {
+      "name": "Eten bij mij - 12 April",
+      "date": "2025-04-12T13:30:00",
+      "background": "/foodatme.jpg"
+    },
+    {
+      "name": "Wandeling - Les Deux Ourthes",
+      "date": "2025-05-04T10:00:00",
+      "background": "/lesdeuxourthes.jpg"
+    }
+  ]
+}

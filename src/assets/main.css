@@ -1,14 +1,11 @@
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family:'Poppins';
+@import './base.css';
+
+#app {
+  height: 100vh;
 }
 
 .hero{
   height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,.5), 
-  rgba(0,0,0,.5)), url(background.jpg);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -29,17 +26,21 @@ h1 {
   gap: 90px;
 }
 
-.time{
+.time {
   text-align: center;
 }
 
-.time h2{
+.time h2 {
   font-size: 5rem;
   font-weight: 100;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  .hero{
+    height: 50vh;
+  }
+
   h1 {
     font-size: 1.5rem;
   }
