@@ -37,3 +37,20 @@ h1 {
   font-size: 5rem;
   font-weight: 100;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .timebox {
+    display: flex;
+    gap: 20px;
+  }
+
+  .time h2{
+    font-size: 2.5rem;
+    font-weight: 200;
+  }
+}
