@@ -1,7 +1,9 @@
 <template>
   <template v-if="showActivity">
-    <div class="hero" :style="{backgroundImage: `linear-gradient(rgba(0,0,0,.5), 
-    rgba(0,0,0,.5)), url(${activity.background})`}">
+    <div class="hero" :style="{
+      backgroundImage: `linear-gradient(rgba(0,0,0,.5), 
+    rgba(0,0,0,.5)), url(${activity.background})`
+    }">
       <h1>{{ activity.name }}</h1>
       <div class="timebox">
         <div class="time">
@@ -21,13 +23,14 @@
           <p>Seconds</p>
         </div>
       </div>
+      <h3>{{ date }}</h3>
     </div>
   </template>
 </template>
 
 <script setup lang="ts">
 import type { Activity } from '@/models/Activity';
-import { computed, onBeforeMount, onBeforeUnmount, ref } from 'vue';
+import { computed, onBeforeUnmount, ref } from 'vue';
 
 // Setup for activity
 const activity = defineProps<Activity>()
@@ -44,23 +47,32 @@ const Hours = computed(() => hours.value < 10 ? `0${hours.value}` : hours.value)
 const Minutes = computed(() => minutes.value < 10 ? `0${minutes.value}` : minutes.value)
 const Seconds = computed(() => seconds.value < 10 ? `0${seconds.value}` : seconds.value)
 
+const options = {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit'
+}
+const date = `${activity.date.toLocaleDateString("nl-BE", options)}`
+
 // Run update of properties
 const interval = setInterval(() => {
-    const currentDate = new Date()
-    const distance = activity.date.getTime() - currentDate.getTime()
+  const currentDate = new Date()
+  const distance = activity.date.getTime() - currentDate.getTime()
 
-    days.value = Math.floor(distance/(1000*60*60*24))
-    hours.value = Math.floor(distance/(1000*60*60)) % 24 == 0 ? 0 : Math.floor(distance/(1000*60*60)) % 24
-    minutes.value = Math.floor(distance/(1000*60)) % 60 == 0 ? 0 : Math.floor(distance/(1000*60)) % 60
-    seconds.value = Math.floor(distance/1000) % 60 == 0 ? 0 : Math.floor(distance/1000) % 60
+  days.value = Math.floor(distance / (1000 * 60 * 60 * 24))
+  hours.value = Math.floor(distance / (1000 * 60 * 60)) % 24 == 0 ? 0 : Math.floor(distance / (1000 * 60 * 60)) % 24
+  minutes.value = Math.floor(distance / (1000 * 60)) % 60 == 0 ? 0 : Math.floor(distance / (1000 * 60)) % 60
+  seconds.value = Math.floor(distance / 1000) % 60 == 0 ? 0 : Math.floor(distance / 1000) % 60
 
-    if(distance < 0){
-      days.value = 0
-      hours.value = 0
-      minutes.value = 0
-      seconds.value = 0
-    }
-  }, 1000)
+  if (distance < 0) {
+    days.value = 0
+    hours.value = 0
+    minutes.value = 0
+    seconds.value = 0
+  }
+}, 1000)
 
 onBeforeUnmount(() => {
   clearInterval(interval)
@@ -68,9 +80,9 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.hero{
-  background-image: linear-gradient(rgba(0,0,0,.5), 
-  rgba(0,0,0,.5)), url();
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, .5),
+      rgba(0, 0, 0, .5)), url();
 }
 
 h1 {
@@ -95,7 +107,7 @@ h1 {
     gap: 20px;
   }
 
-  .time h2{
+  .time h2 {
     font-size: 2.5rem;
   }
 }
