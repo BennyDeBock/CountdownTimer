@@ -24,11 +24,13 @@
         </div>
       </div>
       <h3>{{ date }}</h3>
+      <button class="button">Add to calendar</button>
     </div>
   </template>
 </template>
 
 <script setup lang="ts">
+import CalculateTimeRemaining from '@/helpers/Countdown';
 import type { Activity } from '@/models/Activity';
 import { computed, onBeforeUnmount, ref } from 'vue';
 
@@ -39,6 +41,13 @@ const days = ref(0)
 const hours = ref(0)
 const minutes = ref(0)
 const seconds = ref(0)
+
+// Initialize time upon creation of object
+const countdown = CalculateTimeRemaining(activity)
+days.value = countdown.days
+hours.value = countdown.hours
+minutes.value = countdown.minutes
+seconds.value = countdown.seconds
 
 // Computed properties for display
 const showActivity = computed(() => activity.date.getTime() - new Date().getTime() > 0 ? true : false)
@@ -58,20 +67,12 @@ const date = `${activity.date.toLocaleDateString("nl-BE", options)}`
 
 // Run update of properties
 const interval = setInterval(() => {
-  const currentDate = new Date()
-  const distance = activity.date.getTime() - currentDate.getTime()
+  const countdown = CalculateTimeRemaining(activity)
 
-  days.value = Math.floor(distance / (1000 * 60 * 60 * 24))
-  hours.value = Math.floor(distance / (1000 * 60 * 60)) % 24 == 0 ? 0 : Math.floor(distance / (1000 * 60 * 60)) % 24
-  minutes.value = Math.floor(distance / (1000 * 60)) % 60 == 0 ? 0 : Math.floor(distance / (1000 * 60)) % 60
-  seconds.value = Math.floor(distance / 1000) % 60 == 0 ? 0 : Math.floor(distance / 1000) % 60
-
-  if (distance < 0) {
-    days.value = 0
-    hours.value = 0
-    minutes.value = 0
-    seconds.value = 0
-  }
+  days.value = countdown.days
+  hours.value = countdown.hours
+  minutes.value = countdown.minutes
+  seconds.value = countdown.seconds
 }, 1000)
 
 onBeforeUnmount(() => {
