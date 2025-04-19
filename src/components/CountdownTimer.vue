@@ -24,12 +24,13 @@
         </div>
       </div>
       <h3>{{ date }}</h3>
-      <button class="button">Add to calendar</button>
+      <button class="button" @click="AddEventToCalendar(activity)">Add to calendar</button>
     </div>
   </template>
 </template>
 
-<script setup lang="ts">
+<script async setup lang="ts">
+import { AddEventToCalendar } from '@/helpers/CalendarHelper';
 import CalculateTimeRemaining from '@/helpers/Countdown';
 import type { Activity } from '@/models/Activity';
 import { computed, onBeforeUnmount, ref } from 'vue';
@@ -56,14 +57,14 @@ const Hours = computed(() => hours.value < 10 ? `0${hours.value}` : hours.value)
 const Minutes = computed(() => minutes.value < 10 ? `0${minutes.value}` : minutes.value)
 const Seconds = computed(() => seconds.value < 10 ? `0${seconds.value}` : seconds.value)
 
-const options = {
+const timeFormat: Intl.DateTimeFormatOptions = {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
   hour: '2-digit',
   minute: '2-digit'
 }
-const date = `${activity.date.toLocaleDateString("nl-BE", options)}`
+const date = `${activity.date.toLocaleDateString("nl-BE", timeFormat)}`
 
 // Run update of properties
 const interval = setInterval(() => {

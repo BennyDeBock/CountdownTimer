@@ -1,6 +1,11 @@
 export interface Activity {
   name: string
   date: Date
+  duration: {
+    hours: number
+    minutes: number
+  }
+  location: string
   background: string
 }
 
