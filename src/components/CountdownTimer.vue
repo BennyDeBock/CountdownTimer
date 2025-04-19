@@ -24,11 +24,14 @@
         </div>
       </div>
       <h3>{{ date }}</h3>
+      <button class="button" @click="AddEventToCalendar(activity)">Add to calendar</button>
     </div>
   </template>
 </template>
 
-<script setup lang="ts">
+<script async setup lang="ts">
+import { AddEventToCalendar } from '@/helpers/CalendarHelper';
+import CalculateTimeRemaining from '@/helpers/Countdown';
 import type { Activity } from '@/models/Activity';
 import { computed, onBeforeUnmount, ref } from 'vue';
 
@@ -40,6 +43,13 @@ const hours = ref(0)
 const minutes = ref(0)
 const seconds = ref(0)
 
+// Initialize time upon creation of object
+const countdown = CalculateTimeRemaining(activity)
+days.value = countdown.days
+hours.value = countdown.hours
+minutes.value = countdown.minutes
+seconds.value = countdown.seconds
+
 // Computed properties for display
 const showActivity = computed(() => activity.date.getTime() - new Date().getTime() > 0 ? true : false)
 const Days = computed(() => days.value < 10 ? `0${days.value}` : days.value)
@@ -47,31 +57,23 @@ const Hours = computed(() => hours.value < 10 ? `0${hours.value}` : hours.value)
 const Minutes = computed(() => minutes.value < 10 ? `0${minutes.value}` : minutes.value)
 const Seconds = computed(() => seconds.value < 10 ? `0${seconds.value}` : seconds.value)
 
-const options = {
+const timeFormat: Intl.DateTimeFormatOptions = {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
   hour: '2-digit',
   minute: '2-digit'
 }
-const date = `${activity.date.toLocaleDateString("nl-BE", options)}`
+const date = `${activity.date.toLocaleDateString("nl-BE", timeFormat)}`
 
 // Run update of properties
 const interval = setInterval(() => {
-  const currentDate = new Date()
-  const distance = activity.date.getTime() - currentDate.getTime()
+  const countdown = CalculateTimeRemaining(activity)
 
-  days.value = Math.floor(distance / (1000 * 60 * 60 * 24))
-  hours.value = Math.floor(distance / (1000 * 60 * 60)) % 24 == 0 ? 0 : Math.floor(distance / (1000 * 60 * 60)) % 24
-  minutes.value = Math.floor(distance / (1000 * 60)) % 60 == 0 ? 0 : Math.floor(distance / (1000 * 60)) % 60
-  seconds.value = Math.floor(distance / 1000) % 60 == 0 ? 0 : Math.floor(distance / 1000) % 60
-
-  if (distance < 0) {
-    days.value = 0
-    hours.value = 0
-    minutes.value = 0
-    seconds.value = 0
-  }
+  days.value = countdown.days
+  hours.value = countdown.hours
+  minutes.value = countdown.minutes
+  seconds.value = countdown.seconds
 }, 1000)
 
 onBeforeUnmount(() => {

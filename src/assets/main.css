@@ -1,11 +1,11 @@
 @import './base.css';
 
 #app {
-  height: 100vh;
+  height: 100svh;
 }
 
 .hero{
-  height: 100vh;
+  height: 100svh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -39,12 +39,26 @@ h1 {
 h3 {
   font-size: 2.5rem;
   font-weight: 400;
+  margin-bottom: 10px;
+}
+
+button {
+  background: rgba(0,0,0,0.4);
+  color: white;
+  font-size: 1.5rem;
+  padding: 15px;
+  border-radius: 25px;
+}
+
+button:hover {
+  cursor:pointer;
+  background-color: #00a676;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .hero{
-    height: 50vh;
+    height: 50svh;
   }
 
   h1 {
@@ -63,5 +77,13 @@ h3 {
 
   h3 {
     font-size: 1.2rem;
+  }
+
+  button {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 15px;
   }
 }
