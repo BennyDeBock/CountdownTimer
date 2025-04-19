@@ -3,17 +3,32 @@
     {
       "name": "Heimdal Verkiezingen",
       "date": "12 May 2025 18:30:00",
-      "background": "/verkiezingen.jpg"
+      "background": "/verkiezingen.jpg",
+      "duration": {
+        "hours": 8,
+        "minutes": 30
+      },
+      "location": "Comic Sans - Klein Turkije 4, 9000 Gent"
     },
     {
       "name": "Eten bij mij - 12 April",
       "date": "12 April 2025 13:30:00",
-      "background": "/foodatme.jpg"
+      "background": "/foodatme.jpg",
+      "duration": {
+        "hours": 8,
+        "minutes": 0
+      },
+      "location": "Vleeshouwersstraat 47, 9112 Sinaai"
     },
     {
       "name": "Wandeling - Les Deux Ourthes",
       "date": "4 May 2025 10:00:00",
-      "background": "/lesdeuxourthes.jpg"
+      "background": "/lesdeuxourthes.jpg",
+      "duration": {
+        "hours": 8,
+        "minutes": 0
+      },
+      "location": "Parc naturel des Deux Ourthes, 8 rue de la Roche, B-6660 Houffalize"
     }
   ]
 }
