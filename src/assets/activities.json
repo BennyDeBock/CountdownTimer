@@ -1,18 +1,8 @@
 {
   "data": [
     {
-      "name": "Heimdal Verkiezingen",
-      "date": "12 May 2025 18:30:00",
-      "background": "/verkiezingen.jpg",
-      "duration": {
-        "hours": 8,
-        "minutes": 30
-      },
-      "location": "Comic Sans - Klein Turkije 4, 9000 Gent"
-    },
-    {
-      "name": "Eten bij mij - 12 April",
-      "date": "12 April 2025 13:30:00",
+      "name": "Eten bij mij - 28 Juni",
+      "date": "28 June 2025 13:30:00",
       "background": "/foodatme.jpg",
       "duration": {
         "hours": 8,
@@ -21,8 +11,8 @@
       "location": "Vleeshouwersstraat 47, 9112 Sinaai"
     },
     {
-      "name": "Wandeling - Les Deux Ourthes",
-      "date": "4 May 2025 10:00:00",
+      "name": "Wandeling - Mullerthal Trail",
+      "date": "12 July 2025 10:00:00",
       "background": "/lesdeuxourthes.jpg",
       "duration": {
         "hours": 8,
