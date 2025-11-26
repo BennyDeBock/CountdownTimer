@@ -1,14 +1,24 @@
 {
   "data": [
     {
-      "name": "Eten bij mij - 28 Juni",
-      "date": "28 June 2025 13:30:00",
+      "name": "Christmas Dinner",
+      "date": "24 December 2025 17:00:00",
       "background": "/foodatme.jpg",
       "duration": {
         "hours": 8,
         "minutes": 0
       },
       "location": "Vleeshouwersstraat 47, 9112 Sinaai"
+    },
+    {
+      "name": "Christmas Day 🎁⛄🎄",
+      "date": "25 December 2025 00:00:00",
+      "background": "/christmas.png",
+      "duration": {
+        "hours": 8,
+        "minutes": 0
+      },
+      "location": "Around the world"
     },
     {
       "name": "Wandeling - Mullerthal Trail",
